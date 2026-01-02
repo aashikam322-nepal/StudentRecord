@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Enroll Student</title>
+    <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+<div class="top-bar">
+    <meta charset="UTF-8">
+    <a href="/index.html" class="home-link">🏠 Home</a>
+</div>
+
+
+<h2>Student Enrollment</h2>
+
+<form id="enrollForm">
+    <select id="studentSelect" required></select>
+    <select id="courseSelect" required></select>
+    <button type="submit">Enroll</button>
+</form>
+
+<h3>Enrollments</h3>
+
+<table border="1">
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Student</th>
+        <th>Course</th>
+    </tr>
+    </thead>
+    <tbody id="enrollTable"></tbody>
+</table>
+
+<script src="/enrollment.js"></script>
+</body>
+</html>
