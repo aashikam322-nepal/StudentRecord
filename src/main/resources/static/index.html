@@ -26,7 +26,8 @@
                 <button
                         id="logoutBtn"
                         class="btn btn-light btn-sm ms-3"
-                        onclick="logout()">
+                        onclick="logout()"
+                        style="display: none;">
                     Logout
                 </button>
             </li>
@@ -47,6 +48,38 @@
                 <input id="username" class="form-control mb-2" placeholder="Username">
                 <input id="password" type="password" class="form-control mb-3" placeholder="Password">
                 <button class="btn btn-primary w-100" onclick="login()">Login</button>
+                <div class="text-center">
+                    <p class="mb-0">Don't have an account?
+                        <a href="#" onclick="document.getElementById('loginSection').style.display='none';
+                               document.getElementById('registerSection').style.display='block';
+                               clearError();
+                               return false;">
+                            Register here
+                        </a>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+<!--    REGISTER-->
+    <div id="registerSection" class="row justify-content-center" style="display: none;">
+        <div class="col-md-5">
+            <div class="card shadow p-3">
+                <h4 class="text-center">👋 Create Account</h4>
+                <input id="regUsername" class="form-control mb-2" placeholder="Choose a username">
+                <input id="regPassword" type="password" class="form-control mb-3" placeholder="Choose a password">
+                <button class="btn btn-success w-100 mb-2" onclick="register()">Register</button>
+                <div class="text-center">
+                    <p class="mb-0">Already have an account?
+                        <a href="#" onclick="document.getElementById('registerSection').style.display='none';
+                                       document.getElementById('loginSection').style.display='block';
+                                       clearError();
+                                       return false;">
+                            Login here
+                        </a>
+                    </p>
+                </div>
             </div>
         </div>
     </div>
@@ -102,7 +135,7 @@
     <!-- 🔒 ROLE INFO -->
     <div class="mt-5 text-center">
         <h4>🔒 Admin vs User Capabilities</h4>
-        <p><strong>ADMIN:</strong> Create, delete, enroll students</p>
+        <p><strong>ADMIN:</strong> Create, Delete, Update enroll students</p>
         <p><strong>USER:</strong> View courses, students, enrollments</p>
     </div>
 

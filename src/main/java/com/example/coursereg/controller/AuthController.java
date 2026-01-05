@@ -1,5 +1,6 @@
 package com.example.coursereg.controller;
 
+import com.example.coursereg.entity.Role;
 import com.example.coursereg.entity.User;
 import com.example.coursereg.repository.UserRepository;
 import com.example.coursereg.security.JwtUtil;
@@ -29,13 +30,20 @@ public class AuthController {
        REGISTER (USER ONLY)
     ====================== */
     @PostMapping("/register")
-    public String register(@RequestBody User user) {
+    public String register(@RequestBody Map<String, String> request) {
+        String username = request.get("username");
+        String password = request.get("password");
 
-        if (userRepository.findByUsername(user.getUsername()).isPresent()) {
+        if (userRepository.findByUsername(username).isPresent()) {
             throw new RuntimeException("Username already exists");
         }
 
-        user.setPassword(passwordEncoder.encode(user.getPassword()));
+        User user = new User();
+        user.setUsername(username);
+        user.setPassword(passwordEncoder.encode(password));
+        // Set default role to ROLE_USER
+        user.setRole(Role.ROLE_USER);
+
         userRepository.save(user);
 
         return "User registered successfully";

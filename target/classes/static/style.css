@@ -275,6 +275,13 @@ footer {
 #logoutBtn:hover {
     background-color: #cfe2f3 !important;
 }
+/* Add !important to override any other styles */
+#logoutBtn[style*="display: none"] {
+    display: none !important;
+    opacity: 0 !important;
+    visibility: hidden !important;
+    pointer-events: none !important;
+}
 .navbar .nav-item {
     display: flex;
     align-items: center;
@@ -393,6 +400,25 @@ select.form-control {
     border: 1px solid #ced4da;
     border-radius: 4px;
 }
+/* Add this to your style.css */
+#loginSection a,
+#registerSection a {
+    color: #0d6efd;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+#loginSection a:hover,
+#registerSection a:hover {
+    text-decoration: underline;
+}
+
+.text-center {
+    margin-top: 10px;
+    font-size: 0.9rem;
+    color: #6c757d;
+}
+
 
 
 
