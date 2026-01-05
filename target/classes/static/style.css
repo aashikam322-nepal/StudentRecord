@@ -400,24 +400,142 @@ select.form-control {
     border: 1px solid #ced4da;
     border-radius: 4px;
 }
-/* Add this to your style.css */
-#loginSection a,
-#registerSection a {
-    color: #0d6efd;
-    text-decoration: none;
-    font-weight: 500;
-}
+//* Center the login and register cards */
+ #loginSection .card,
+ #registerSection .card {
+     max-width: 500px;  /* Adjust width as needed */
+     margin: 0 auto;    /* This centers the card */
+ }
 
-#loginSection a:hover,
-#registerSection a:hover {
-    text-decoration: underline;
-}
+ /* Ensure the container doesn't take full width */
+ #loginSection .col-md-5,
+ #registerSection .col-md-5 {
+     flex: 0 0 100%;
+     max-width: 500px;  /* Match the card width */
+     margin: 0 auto;    /* Center the column */
+     padding: 0 15px;   /* Add some horizontal padding */
+ }
 
-.text-center {
-    margin-top: 10px;
-    font-size: 0.9rem;
-    color: #6c757d;
-}
+ /* Make sure the form takes full width of the card */
+ #loginSection .card,
+ #registerSection .card {
+     width: 100%;
+ }
+
+ /* Keep the existing styles below */
+ #loginSection a,
+ #registerSection a {
+     color: #0d6efd;
+     text-decoration: none;
+     font-weight: 500;
+ }
+
+ #loginSection a:hover,
+ #registerSection a:hover {
+     text-decoration: underline;
+ }
+
+ .text-center {
+     margin-top: 10px;
+     font-size: 0.9rem;
+     color: #6c757d;
+ }
+ /* Add this to your style.css */
+ .input-group-text {
+     cursor: pointer;
+     background-color: #fff;
+     border-left: none;
+ }
+ /* Make the icon smaller */
+ .bi {
+     font-size: 1rem;  /* Reduced from default */
+     line-height: 1;
+     display: inline-block;
+     width: 1em;
+     height: 1em;
+ }
+
+ /* Adjust the input field to account for the smaller button */
+ .input-group > .form-control {
+     padding-right: 2.5rem;  /* Make room for the icon */
+ }
+
+ /* Update the eye icon button styles */
+ .input-group .btn-outline-secondary {
+     border-color: #ced4da;
+     border-left: none;
+     border-top-right-radius: 0.25rem !important;
+     border-bottom-right-radius: 0.25rem !important;
+     padding: 0.375rem 0.5rem;  /* Reduced padding */
+     display: flex;
+     align-items: center;
+     justify-content: center;
+     width: 38px;  /* Fixed width */
+ }
+
+ .input-group .btn-outline-secondary:hover {
+     background-color: #f8f9fa;
+ }
+
+ /* Make sure the input group doesn't have extra border */
+ .input-group > .form-control:not(:last-child),
+ .input-group > .form-select:not(:last-child) {
+     border-top-right-radius: 0;
+     border-bottom-right-radius: 0;
+ }
+ /* Navbar date and location styles */
+ #datetime-location {
+     display: flex;
+     align-items: center;
+     font-size: 0.9rem;
+     margin-left: 20px;
+     padding: 5px 10px;
+     background: rgba(255, 255, 255, 0.15);
+     border-radius: 4px;
+     min-width: 300px; /* Ensure enough space for the content */
+ }
+
+ #datetime {
+     white-space: nowrap;
+     margin-right: 10px;
+ }
+
+ #location {
+     display: flex;
+     align-items: center;
+     gap: 4px;
+     white-space: nowrap;
+ }
+
+ #flag {
+     font-size: 1rem;
+ }
+
+ /* For smaller screens */
+ @media (max-width: 1200px) {
+     #datetime-location {
+         min-width: auto;
+         max-width: 250px;
+         overflow: hidden;
+         text-overflow: ellipsis;
+         white-space: nowrap;
+     }
+ }
+
+ @media (max-width: 992px) {
+     #datetime-location {
+         order: 1;
+         width: 100%;
+         max-width: 100%;
+         margin: 10px 0;
+         justify-content: center;
+     }
+
+     .navbar-collapse {
+         order: 2;
+     }
+
+ }
 
 
 

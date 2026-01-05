@@ -230,7 +230,104 @@ function clearError() {
         errorBox.textContent = "";
     }
 }
+function togglePassword(fieldId) {
+    const passwordField = document.getElementById(fieldId);
+    const icon = document.getElementById(`toggle${fieldId.charAt(0).toUpperCase() + fieldId.slice(1)}Icon`);
 
+    if (passwordField.type === "password") {
+        passwordField.type = "text";
+        icon.classList.remove('bi-eye-slash');
+        icon.classList.add('bi-eye');
+    } else {
+        passwordField.type = "password";
+        icon.classList.remove('bi-eye');
+        icon.classList.add('bi-eye-slash');
+    }
+}
+// Update date and time with user's local timezone
+function updateDateTime() {
+    const now = new Date();
+    const options = {
+        weekday: 'short',
+        year: 'numeric',
+        month: 'short',
+        day: 'numeric',
+        hour: '2-digit',
+        minute: '2-digit',
+        hour12: true,
+    };
+
+    // Get user's locale
+    const userLocale = navigator.language || 'en-US';
+
+    // Format date and time according to user's locale and timezone
+    const dateTimeStr = now.toLocaleString(userLocale, options);
+    document.getElementById('datetime').textContent = dateTimeStr;
+}
+
+// Get user's location using geolocation API
+function getUserLocation() {
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(
+            async (position) => {
+                try {
+                    const { latitude, longitude } = position.coords;
+                    const response = await fetch(`https://api.bigdatacloud.net/data/reverse-geocode-client?latitude=${latitude}&longitude=${longitude}&localityLanguage=en`);
+                    const data = await response.json();
+
+                    if (data.countryCode) {
+                        const countryCode = data.countryCode;
+                        const countryName = data.countryName;
+                        try {
+                            const flag = String.fromCodePoint(...Array.from(countryCode).map(c => 127397 + c.charCodeAt(0)));
+                            document.getElementById('flag').textContent = flag;
+                            document.getElementById('country').textContent = countryName;
+                        } catch (e) {
+                            document.getElementById('flag').textContent = '🌐';
+                            document.getElementById('country').textContent = countryName;
+                        }
+                    }
+                } catch (error) {
+                    console.error('Error getting location:', error);
+                    // Fallback to browser's locale
+                    setDefaultLocation();
+                }
+            },
+            (error) => {
+                console.error('Geolocation error:', error);
+                setDefaultLocation();
+            }
+        );
+    } else {
+        setDefaultLocation();
+    }
+}
+
+// Set default location based on browser's locale
+function setDefaultLocation() {
+    const userLocale = navigator.language || 'en-US';
+    const regionNames = new Intl.DisplayNames([userLocale], { type: 'region' });
+    const countryCode = (userLocale.split('-')[1] || 'US').toUpperCase();
+
+    try {
+        const flag = String.fromCodePoint(...Array.from(countryCode).map(c => 127397 + c.charCodeAt(0)));
+        document.getElementById('flag').textContent = flag;
+        document.getElementById('country').textContent = regionNames.of(countryCode) || 'Unknown';
+    } catch (e) {
+        document.getElementById('flag').textContent = '🌐';
+        document.getElementById('country').textContent = 'Online';
+    }
+}
+
+// Initialize everything when the page loads
+document.addEventListener('DOMContentLoaded', function() {
+    // Initial update
+    updateDateTime();
+    getUserLocation();
+
+    // Update time every minute (60000 milliseconds)
+    setInterval(updateDateTime, 60000);
+});
 /* ======================
    AUTO INIT (ONLY ONCE)
 ====================== */
