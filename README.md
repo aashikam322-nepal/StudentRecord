@@ -19,7 +19,7 @@ beginners/juniors**.
 -   Java 17
 -   Spring Boot
 -   Spring Data JPA
--   H2 In-Memory Database
+-   H2 In-Memory Database/MySQL
 -   REST APIs
 
 ### Frontend
