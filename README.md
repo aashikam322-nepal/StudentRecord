@@ -90,6 +90,14 @@ Enrollments   http://localhost:8080/enrollments.html
 -   JDBC URL: `jdbc:h2:mem:testdb`
 -   Username: `sa`
 -   Password: *(empty)*
+- ------------------------------------------------------------------------
+
+## 🗄 MySQL Database 
+
+-   spring.datasource.url=jdbc:mysql://localhost:3306/coursedb
+-   spring.datasource.username=root
+-  spring.datasource.password=Mandal@1998
+-  spring.datasource.driver-class-name=com.mysql.cj.jdbc.Driver
 
 ------------------------------------------------------------------------
 
